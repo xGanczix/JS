@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            display: grid;
+            place-items: center;
+            height: 100vh;
+        }
+
+        .wrapper {
+            width: 1000px;
+            border: 10px solid #000;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        img {
+            width: 1000px;
+            height: 600px;
+            object-fit: cover;
+        }
+
+        .slider {
+            display: flex;
+            height: 100%;
+        }
+
+        span {
+            position: absolute;
+            top: 50%;
+            color: #000;
+            font-size: 30px;
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        .leftButton {
+            left: 2%;
+        }
+
+        .rightButton {
+            right: 2%;
+        }
+
+        span:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+            transition: ease-in-out 0.2s all;
+        }
+
+        span:active {
+            transform: scale(0.7);
+            transition: ease-in-out 0.2s all;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <span class="leftButton" unselectable="on" onselectstart="return false">&#x2190;</span>
+        <div class="slider">
+            <img src="https://images.hdqwalls.com/download/anime-landscape-d5-1366x768.jpg" class="first">
+            <img src="https://wallpaperaccess.com/full/340050.jpg">
+            <img src="https://wallpapercave.com/wp/wp3688492.jpg">
+            <img src="https://fondosmil.com/fondo/10857.jpg">
+            <img src="https://images.wallpapersden.com/image/download/neon-shallows_a25tbWmUmZqaraWkpJRmaGtrrWxrbQ.jpg">
+            <img src="https://images.hdqwalls.com/download/anime-landscape-d5-1366x768.jpg">
+            <img src="https://wallpaperaccess.com/full/340050.jpg" class="last">
+        </div>
+        <span class="rightButton" unselectable="on" onselectstart="return false">&#x2192;</span>
+    </div>
+
+
+    <script type="text/javascript">
+        const img = document.querySelectorAll("img");
+        const wrapper = document.querySelector(".wrapper");
+        const slider = document.querySelector(".slider");
+        const left = document.querySelector(".leftButton");
+        const right = document.querySelector(".rightButton");
+
+        let current = 1;
+        const imgSize = 1000;
+        slider.style.transform = "translateX(-1000px)";
+        left.addEventListener("click", () => {
+            if (current <= 0) return;
+            slider.style.transition = "200ms ease-in-out transform";
+            current--;
+            slider.style.transform = `translateX(${-imgSize * current}px)`;
+        })
+        right.addEventListener("click", () => {
+            if (current >= img.length - 1) return;
+            slider.style.transition = "200ms ease-in-out transform";
+            current++;
+            slider.style.transform = `translateX(${-imgSize * current}px)`;
+        })
+
+        slider.addEventListener("transitionend", () => {
+            if (img[current].classList.contains("first")) {
+                slider.style.transition = "none";
+                current = img.length - 2;
+                slider.style.transform = `translateX(${-imgSize * current}px)`;
+            }
+            if (img[current].classList.contains("last")) {
+                slider.style.transition = "none";
+                current = img.length - current;
+                slider.style.transform = `translateX(${-imgSize * current}px)`;
+            }
+        })
+    </script>
+</body>
+
+</html>
