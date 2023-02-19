@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.play,
+.record {
+    border: 2px solid #000;
+    width: 310px;
+    padding: 10px 0;
+    text-align: center;
+    margin: 10px auto;
+    padding: 20px;
+}
+
+.key {
+    display: flex;
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+.key-symbol {
+    border: 1px solid #000;
+    width: 30px;
+    padding: 2px;
+    text-align: center;
+    font-weight: bold;
+    margin: 0 4px
+}
+
+.record-channel {
+    width: 320px;
+    margin-top: 5px;
+}
